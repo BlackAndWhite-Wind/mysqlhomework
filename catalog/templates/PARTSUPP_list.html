@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    零件供应列表
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        {#新建按钮#}
+        
+
+        {#面板#}
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                零件供应列表
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th style="text-align: center; justify-content: center;">序号</th>
+                    <th style="text-align: center; justify-content: center;">零件名称</th>
+                    <th style="text-align: center; justify-content: center;">供应商名称</th>
+                    <th style="text-align: center; justify-content: center;">供应数量</th>
+                    <th style="text-align: center; justify-content: center;">供应价格</th>
+                    <th style="text-align: center; justify-content: center;">备注</th>
+                    <th style="text-align: center; justify-content: center;">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr>
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ obj.PS_PARTKEY }}</td>
+                        <td>{{ obj.PS_SUPPKEY }}</td>
+                        <td>{{ obj.PS_AVAILQTY }}</td>
+                        <td>{{ obj.PS_SUPPLYCOST }}</td>
+                        <td>{{ obj.PS_COMMENT }}</td>    
+                        <td>
+                            <a href="/PARTSUPP/{{ obj.id }}/edit/" class="btn btn-primary btn-xs">编辑</a>
+                            <a href="/PARTSUPP/{{ obj.id }}/delete/" class="btn btn-danger btn-xs">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-bottom: 10px">
+            <a class="btn btn-success" href="/PARTSUPP/add/">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                新建零件供应
+            </a>
+        </div>
+
+
+    </div>
+{% endblock content %}

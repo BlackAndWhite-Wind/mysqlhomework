@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    供应商列表
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        {#新建按钮#}
+        
+        {#面板#}
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                供应商列表
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th style="text-align: center; justify-content: center;">序号</th>
+                    <th style="text-align: center; justify-content: center;">供应商编号</th>
+                    <th style="text-align: center; justify-content: center;">供应商名称</th>
+                    <th style="text-align: center; justify-content: center;">供应商地址</th>
+                    <th style="text-align: center; justify-content: center;">所属国家</th>
+                    <th style="text-align: center; justify-content: center;">电话</th>
+                    <th style="text-align: center; justify-content: center;">余额</th>
+                    <th style="text-align: center; justify-content: center;">备注</th>
+                    <th style="text-align: center; justify-content: center;">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr>
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ obj.S_SUPPKEY }}</td>
+                        <td>{{ obj.S_NAME }}</td>
+                        <td>{{ obj.S_ADDRESS }}</td>
+                        <td>{{ obj.S_NATIONKEY }}</td>
+                        <td>{{ obj.S_PHONE }}</td>
+                        <td>{{ obj.S_ACCTBAL }}</td>
+                        <td>{{ obj.S_COMMENT }}</td>
+                        <td>
+                            <a href="/SUPPLIER/{{ obj.S_SUPPKEY }}/edit/" class="btn btn-primary btn-xs">编辑</a>
+                            <a href="/SUPPLIER/{{ obj.S_SUPPKEY }}/delete/" class="btn btn-danger btn-xs">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-bottom: 10px">
+            <a class="btn btn-success" href="/SUPPLIER/add/">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                新建供应商
+            </a>
+        </div>
+
+    </div>
+{% endblock content %}

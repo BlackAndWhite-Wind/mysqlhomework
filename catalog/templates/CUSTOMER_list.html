@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    顾客列表
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        {#新建按钮#}
+        
+
+        {#面板#}
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                顾客列表
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered table-striped table-hover">
+                <thead >
+                <tr >
+                    <th style="text-align: center; justify-content: center;">ID</th>
+                    <th style="text-align: center; justify-content: center;">顾客编号</th>
+                    <th style="text-align: center; justify-content: center;">顾客名称</th>
+                    <th style="text-align: center; justify-content: center;">顾客地址</th>
+                    <th style="text-align: center; justify-content: center;">所属国家</th>
+                    <th style="text-align: center; justify-content: center;">联系电话</th>
+                    <th style="text-align: center; justify-content: center;">可用余额</th>
+                    <th style="text-align: center; justify-content: center;">市场</th>
+                    <th style="text-align: center; justify-content: center;">所属国家</th>
+                    <th style="text-align: center; justify-content: center;">备注</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr>
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ obj.C_CUSTKEY }}</td>
+                        <td>{{ obj.C_NAME }}</td>
+                        <td>{{ obj.C_ADDRESS }}</td>
+                        <td>{{ obj.C_NATIONKEY }}</td>
+                        <td>{{ obj.C_PHONE }}</td>
+                        <td>{{ obj.C_ACCTBAL }}</td>
+                        <td>{{ obj.C_MKTSEGMENT }}</td>
+                        <td>{{ obj.C_COMMENT }}</td>
+                        <td>
+                            <a href="/CUSTOMER/{{ obj.C_CUSTKEY }}/edit/" class="btn btn-primary btn-xs">编辑</a>
+                            <a href="/CUSTOMER/{{ obj.C_CUSTKEY }}/delete/" class="btn btn-danger btn-xs">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-bottom: 10px">
+            <a class="btn btn-success" href="/CUSTOMER/add/">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                新建顾客
+            </a>
+        </div>
+
+
+    </div>
+{% endblock content %}
